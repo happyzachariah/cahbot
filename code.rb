@@ -180,10 +180,15 @@ bot.command(:serverinfo, max_args: 1) do |event|
 end
 
 bot.command(:feedback, min_args: 1) do |event, *args|
+channel = (event.server.channel)
+bot_profile = bot.profile.on(event.server)
+has_perms = bot_profile.permission?(:Manage_messages, channel)
   if event.channel.pm? == true
     event.respond "Sorry, you can't send feedback via PM just yet!"
   break
-  else
+  elsif bot.profile.has_perms == false
+event.respond ":x: Sorry, I don't have the necessary permissions to use this command. Needed : Manage Messages"
+else 
     event.message.delete
     bot.send_message(252239053712392192, "New Feedback from `#{event.user.name}`\##{event.user.discriminator}. ID: #{event.user.id}. From the land of `#{event.server.name}` (Server ID: #{event.server.id}).
 
