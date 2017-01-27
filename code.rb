@@ -150,6 +150,33 @@ bot.command([:cmds, :commands], chain_usable: false, max_args: 0) do |event|
   event << ' `^thanks`: Thanks to these radical donors!'
   event << ' `^feedback <words>`: Want to tell me my bot sucks without going into the CB Server? Well, here you go.'
   event << ' `^noot`: noot'
+  event << ' `^serverinfo` : Want to know about where chu are, well you know what this is for then.'
+end
+
+bot.command(:serverinfo, max_args: 1) do |event|
+	if event.channel.private? then
+	event.respond "You cannot use this command in a PM just yet, sorry!"
+	break
+	else
+			  event << "SERVER INFORMATION"
+			  event << "----------------------------------------------"
+			  event << "Server Name : #{event.server.name}"
+			  event << "Server Region : #{event.server.region}"
+			  event << "Server Owner : #{event.server.owner.name}##{event.server.owner.discriminator}"
+			  event << "Server Owner ID : #{event.server.owner.id}"
+			  event << "Server ID : #{event.server.id}"
+			  event << "Server Roles : #{event.server.roles.length} Roles"
+				event << "Server Channels : #{event.server.channels.length} Channels"
+			  event << "Server Default Channel : #{event.server.general_channel.name}"
+			  event << "Server AFK Channel : #{event.server.afk_channel.name}"
+			  event << "Server AFK Timeout : #{event.server.afk_timeout}"
+			  event << "Server Verification Level : #{event.server.verification_level}"
+			  event << "Server Icon : #{event.server.icon_url}"
+			  event << "Server Role Number : #{event.server.roles.count}"
+			  event << "Server Channel Number : #{event.server.channels.count}"
+			  event << "Server Member Count : #{event.server.member_count}"
+			  event << "----------------------------------------------"
+ end
 end
 
 bot.command(:feedback, min_args: 1) do |event, *args|
