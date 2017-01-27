@@ -40,6 +40,17 @@ bot.command([:eightball, :eball], help_available: false, min_args: 1) do |event|
   event.respond ["Sources say... Yeah", "Sources say... Nah", "Perhaps", "As I see it, yes", "As I see it, no", "If anything, probably", "Not possible", "Ask again at a later time", "Say that again?", "lol idk", "Probably not", "woahdude", "[object Object]", "Undoubtfully so", "I doubt it", "Eh, maybe"].sample
 end
 
+bot.command(:subscribe, help_avaiable: false, max_args: 0, usage: '*subscribe') do |event|
+        if event.server.id != 252196054101917696 then
+          event.respond("#{event.user.mention} Dude, you can only subscribe in the Cah Bot Server!")
+        else event.author.add_role(269753236829896704)
+        event << "#{event.user.mention} Heyo, you've been subscribed to Cah Bot now! Woo :tada:!"
+        end
+      end
+    end
+  end
+end
+
 bot.command(:roll, help_available: false, max_args: 0) do |event|
       h = event.respond '**Rolling Dice!**'
   sleep 2
